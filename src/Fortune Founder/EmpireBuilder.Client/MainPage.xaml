@@ -4,7 +4,7 @@
              x:Class="EmpireBuilder.Client.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
+        <!-- <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
             <Image
@@ -30,7 +30,27 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+        </VerticalStackLayout> -->
+        <VerticalStackLayout Padding="20">
+            <Label x:Name="MoneyLabel" Text="" FontSize="24" HorizontalOptions="Center" />
+            <Button x:Name="ClickButton" Text="Earn Money" FontSize="18" Clicked="OnClickButtonClicked" />
+            <Button x:Name="UpgradeButton" Text="Upgrade (Cost: $50)" FontSize="18" Clicked="OnUpgradeButtonClicked" IsEnabled="False" />
+
+            <Button Text="Go to Items" Clicked="OnGoToItemsButtonClicked" />
+            <CollectionView ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="18" />
+                            <Label Text="{Binding Stock, StringFormat='Stock: {0}'}" />
+                            <Label Text="{Binding SellPrice, StringFormat='Price: ${0:F2}'}" />
+                            <Button Text="But" Command="{Binding BuyCommand}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
+        
     </ScrollView>
 
 </ContentPage>
